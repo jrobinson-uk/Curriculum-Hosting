@@ -49,6 +49,9 @@ jobs:
       - name: Generate pages from Drive structure
         run: npm run generate
 
+      - name: List content directory
+        run: find content/ -type f | sort
+
       - name: Build Quartz website
         run: npx quartz build
         env:
