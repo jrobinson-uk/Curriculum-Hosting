@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 801 427" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:10;">
+    <g id="Artboard1" transform="matrix(1,0,0,1,-1440.62,-2110.27)">
+        <rect x="1440.62" y="2110.27" width="800.325" height="426.672" style="fill:none;"/>
+        <clipPath id="_clip1">
+            <rect x="1440.62" y="2110.27" width="800.325" height="426.672"/>
+        </clipPath>
+        <g clip-path="url(#_clip1)">
+            <g id="Layer-1" serif:id="Layer 1" transform="matrix(5.55556,0,0,5.55556,0.624894,0.273889)">
+                <g transform="matrix(0.181266,0,0,0.154182,-2.83682,65.4989)">
+                    <path d="M2240.95,2103.73L2240.95,2472.05C2240.95,2507.87 2216.21,2536.95 2185.74,2536.95L1501.42,2536.95C1470.95,2536.95 1446.21,2507.87 1446.21,2472.05L1446.21,2103.73C1446.21,2067.91 1470.95,2038.83 1501.42,2038.83L2185.74,2038.83C2216.21,2038.83 2240.95,2067.91 2240.95,2103.73Z" style="fill:rgb(44,48,120);"/>
+                </g>
+                <g transform="matrix(-1,0,0,1,609.952,2.057)">
+                    <rect x="-4.823" y="-19.225" width="628.102" height="886.787" style="fill:none;stroke:rgb(35,31,32);stroke-width:1px;"/>
+                </g>
+                <g transform="matrix(0.18,0,0,0.18,221.332,319.042)">
+                    <text x="269.917px" y="422.409px" style="font-family:'RobotoMono-Regular', 'Roboto Mono', monospace;font-size:44.444px;fill:white;">p<tspan x="296.139px 322.361px 348.584px 374.806px 401.028px 427.25px 453.473px 479.695px 505.917px 532.139px 558.361px " y="422.409px 422.409px 422.409px 422.409px 422.409px 422.409px 422.409px 422.409px 422.409px 422.409px 422.409px ">rice = 3.50</tspan></text>
+                    <text x="269.917px" y="475.743px" style="font-family:'RobotoMono-Regular', 'Roboto Mono', monospace;font-size:44.444px;fill:white;">q<tspan x="296.139px 322.361px 348.584px 374.806px 401.028px 427.25px 453.473px 479.695px 505.917px 532.139px 558.361px " y="475.743px 475.743px 475.743px 475.743px 475.743px 475.743px 475.743px 475.743px 475.743px 475.743px 475.743px ">uantity = 5</tspan></text>
+                    <text x="269.917px" y="529.076px" style="font-family:'RobotoMono-Regular', 'Roboto Mono', monospace;font-size:44.444px;fill:white;">t<tspan x="296.139px 322.361px 348.584px 374.806px 401.028px 427.25px 453.473px 479.695px 505.917px 532.139px 558.361px 584.584px 610.806px 637.028px 663.25px 689.473px 715.695px 741.917px 768.139px 794.361px 820.584px 846.806px 873.028px " y="529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px 529.076px ">otal = price * Quantity</tspan></text>
+                    <text x="269.917px" y="582.409px" style="font-family:'RobotoMono-Regular', 'Roboto Mono', monospace;font-size:44.444px;fill:white;">t<tspan x="296.139px 322.361px 348.584px 374.806px 401.028px 427.25px 453.473px 479.695px 505.917px 532.139px 558.361px 584.584px 610.806px 637.028px 663.25px 689.473px 715.695px 741.917px 768.139px 794.361px 820.584px 846.806px 873.028px " y="582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px 582.409px ">otal = price * quantity</tspan></text>
+                    <text x="269.917px" y="635.743px" style="font-family:'RobotoMono-Regular', 'Roboto Mono', monospace;font-size:44.444px;fill:white;">p<tspan x="296.139px 322.361px 348.584px 374.806px 401.028px 427.25px 453.473px 479.695px 505.917px 532.139px 558.361px " y="635.743px 635.743px 635.743px 635.743px 635.743px 635.743px 635.743px 635.743px 635.743px 635.743px 635.743px ">rint(total)</tspan></text>
+                    <g transform="matrix(44.4444,0,0,44.4444,637.477,689.076)">
+                    </g>
+                    <text x="269.917px" y="689.076px" style="font-family:'RobotoMono-Regular', 'Roboto Mono', monospace;font-size:44.444px;fill:white;">p<tspan x="296.139px 322.361px 348.584px 374.806px 401.028px 427.25px 453.473px 479.695px 505.917px 532.139px 558.361px 584.584px 610.806px " y="689.076px 689.076px 689.076px 689.076px 689.076px 689.076px 689.076px 689.076px 689.076px 689.076px 689.076px 689.076px 689.076px ">rint(&quot;total&quot;)</tspan></text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

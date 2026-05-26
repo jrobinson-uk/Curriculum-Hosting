@@ -1,0 +1,42 @@
+import pandas as pd
+
+# Creating the data for the CSV
+# Using 'Text' as the header which FigJam recognizes for sticky note content
+# Maintaining verbatim or near-verbatim feedback as requested.
+
+data = {
+    "Text": [
+        "Balance Cognitive Load and Endurance - would this be better phrased as 'Balance Cognitive Load and Resilience' or 'Balance Cognitive Load to Support Endurance'?",
+        "Bridge Abstract Concepts to Concrete - possible alternative phrasing: 'Use Concrete Examples to Bridge Abstract Concepts' or 'Bridge Abstract Concepts with Concrete Examples'",
+        "Design for Accessibility, Inclusion and cultural relevance: for a global audience, the phrase 'cultural responsiveness' may land better.",
+        "Principle 3: identify and call out uncertainty/probablistic thinking needed for working with data-driven systems too as a balance.",
+        "Principle 9: explicitly call out the critical awareness of bias and representation in data.",
+        "Is the ordering of the principles meaningful? If not, could it be? If so, can we explain it?",
+        "Some language is too high level - 'Empower agency' and 'Logical Design' would get flagged as a higher CEFR level than we aim for (B1/B2).",
+        "Technical terms like 'cognitive load' and 'metacognition' are quite technical and may be intimidating.",
+        "Does 'Focus on Task Comprehension and Logical Design' include algorithms and design thinking?",
+        "Would any of these cover having to think about user wants and needs when programming?",
+        "Check Understanding to Guide Learning could go further - research shows testing/assessment is a learning tool as well as diagnostic.",
+        "Do we need to build anything in here about 'active learning'? Is including it in 'collaboration' sufficient?",
+        "The language shift requires more of a cognitive load on teachers. I wonder if there is a way to use more approachable language?",
+        "Experience CS educators are often resistant to CS; high-level language could create an unnecessary barrier for those who don't feel capable.",
+        "If it is not broke, why fix it? 'Work Together' illustrates grouping well and is more straight forward than 'Collaborate to Construct Knowledge'.",
+        "Where does co-creation (RPF collaborating with educators to design learning experiences) fit in the principles?",
+        "Framework needs to explicitly serve non-formal contexts like Code Clubs and diverse global environments where device access varies."
+    ],
+    "Color": [
+        "Blue", "Blue", "Blue", "Orange", "Orange", 
+        "Yellow", "Gray", "Gray", "Orange", "Orange", 
+        "Yellow", "Orange", "Gray", "Gray", "Gray", 
+        "Orange", "Yellow"
+    ],
+    "Theme": [
+        "Semantic Refinements", "Semantic Refinements", "Semantic Refinements", "Content Gaps", "Content Gaps",
+        "Framework Logic", "Accessibility", "Accessibility", "Content Gaps", "Content Gaps",
+        "Framework Logic", "Content Gaps", "Accessibility", "Accessibility", "Accessibility",
+        "Content Gaps", "Framework Logic"
+    ]
+}
+
+df = pd.DataFrame(data)
+df.to_csv("pedagogical_principles_feedback_figjam.csv", index=False)

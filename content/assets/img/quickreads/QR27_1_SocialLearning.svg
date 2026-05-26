@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 701 429">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17 {
+        font-size: 19.8px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12, .cls-13, .cls-15 {
+        font-family: Roboto-Regular, Roboto;
+      }
+
+      .cls-2 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-3 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-4 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-5 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-6 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-7 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-8 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-9 {
+        letter-spacing: 0em;
+      }
+
+      .cls-10 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-11 {
+        letter-spacing: -.06em;
+      }
+
+      .cls-12 {
+        letter-spacing: -.06em;
+      }
+
+      .cls-13 {
+        letter-spacing: 0em;
+      }
+
+      .cls-14 {
+        letter-spacing: 0em;
+      }
+
+      .cls-14, .cls-18, .cls-17 {
+        fill: #fff;
+      }
+
+      .cls-14, .cls-16, .cls-17 {
+        font-family: Roboto-Bold, Roboto;
+        font-weight: 700;
+      }
+
+      .cls-19 {
+        fill: #e4f4fc;
+      }
+
+      .cls-20 {
+        fill: #7b4996;
+      }
+
+      .cls-21 {
+        fill: none;
+        stroke: #7d4996;
+        stroke-linejoin: round;
+        stroke-width: 6.6px;
+      }
+
+      .cls-22 {
+        fill: #7d4996;
+      }
+
+      .cls-23 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-18" width="699.88" height="430"/>
+    </clipPath>
+  </defs>
+  <g>
+    <rect class="cls-18" width="699.88" height="430"/>
+    <g class="cls-23">
+      <polygon class="cls-18" points="-.12 0 -.12 430 699.88 430 699.88 0 -.12 0 -.12 0"/>
+    </g>
+  </g>
+  <path class="cls-19" d="M34.15,26.26c-3.44,0-6.24,2.79-6.24,6.24v153.27c0,3.44,2.79,6.24,6.24,6.24h278c3.44,0,6.24-2.79,6.24-6.24V32.5c0-3.44-2.79-6.24-6.24-6.24H34.15Z"/>
+  <path class="cls-19" d="M34.15,238.43c-3.44,0-6.24,2.79-6.24,6.24v153.27c0,3.44,2.79,6.24,6.24,6.24h278c3.44,0,6.24-2.79,6.24-6.24v-153.27c0-3.44-2.79-6.24-6.24-6.24H34.15Z"/>
+  <path class="cls-19" d="M388.05,26.26c-3.44,0-6.24,2.79-6.24,6.24v153.27c0,3.44,2.79,6.24,6.24,6.24h278c3.44,0,6.24-2.79,6.24-6.24V32.5c0-3.44-2.79-6.24-6.24-6.24h-278Z"/>
+  <path class="cls-19" d="M388.05,238.43c-3.44,0-6.24,2.79-6.24,6.24v153.27c0,3.44,2.79,6.24,6.24,6.24h278c3.44,0,6.24-2.79,6.24-6.24v-153.27c0-3.44-2.79-6.24-6.24-6.24h-278Z"/>
+  <path class="cls-20" d="M349.78,293.33c43.53,0,78.81-35.28,78.81-78.81s-35.28-78.81-78.81-78.81-78.81,35.28-78.81,78.81,35.28,78.81,78.81,78.81h0Z"/>
+  <text class="cls-17" transform="translate(305.11 208.21)"><tspan x="0" y="0">Modelling </tspan></text>
+  <text class="cls-17" transform="translate(314.08 234.61)"><tspan x="0" y="0">pr</tspan></text>
+  <text class="cls-14" transform="translate(332.11 234.61)"><tspan x="0" y="0">oces</tspan></text>
+  <text class="cls-17" transform="translate(374.51 234.61)"><tspan x="0" y="0">s</tspan></text>
+  <text class="cls-16" transform="translate(128.93 59.78)"><tspan x="0" y="0">Attentio</tspan></text>
+  <text class="cls-16" transform="translate(200.4 59.78)"><tspan x="0" y="0">n</tspan></text>
+  <text class="cls-3" transform="translate(48.11 92.42)"><tspan x="0" y="0">Recognising and focusing on</tspan></text>
+  <text class="cls-15" transform="translate(292.31 92.42)"><tspan x="0" y="0"> </tspan></text>
+  <text class="cls-3" transform="translate(50.43 118.83)"><tspan x="0" y="0">someon</tspan></text>
+  <text class="cls-11" transform="translate(119.62 118.83)"><tspan x="0" y="0">e’</tspan></text>
+  <text class="cls-3" transform="translate(131.42 118.83)"><tspan x="0" y="0">s behaviour and its</tspan></text>
+  <text class="cls-15" transform="translate(289.97 118.83)"><tspan x="0" y="0"> </tspan></text>
+  <text class="cls-15" transform="translate(111.5 145.23)"><tspan x="0" y="0">v</tspan></text>
+  <text class="cls-3" transform="translate(120.69 145.23)"><tspan x="0" y="0">ital element</tspan></text>
+  <text class="cls-15" transform="translate(218.71 145.23)"><tspan x="0" y="0">s</tspan></text>
+  <text class="cls-16" transform="translate(122.61 271.96)"><tspan x="0" y="0">Motivation</tspan></text>
+  <text class="cls-8" transform="translate(50.08 304.6)"><tspan x="0" y="0">Wa</tspan></text>
+  <text class="cls-10" transform="translate(77.71 304.6)"><tspan x="0" y="0">nting </tspan></text>
+  <text class="cls-7" transform="translate(125.65 304.6)"><tspan x="0" y="0">to repeat behaviour</tspan></text>
+  <text class="cls-15" transform="translate(290.33 304.6)"><tspan x="0" y="0"> </tspan></text>
+  <text class="cls-3" transform="translate(63.22 331)"><tspan x="0" y="0">that has beneﬁ</tspan></text>
+  <text class="cls-15" transform="translate(182.67 331)"><tspan x="0" y="0"> </tspan></text>
+  <text class="cls-6" transform="translate(187.96 331)"><tspan x="0" y="0">ts or avoi</tspan></text>
+  <text class="cls-15" transform="translate(266.02 331)"><tspan x="0" y="0">d </tspan></text>
+  <text class="cls-9" transform="translate(57.47 357.39)"><tspan x="0" y="0">actions that have negative </tspan></text>
+  <text class="cls-13" transform="translate(126.71 383.8)"><tspan x="0" y="0">outcome</tspan></text>
+  <text class="cls-15" transform="translate(203.5 383.8)"><tspan x="0" y="0">s</tspan></text>
+  <text class="cls-16" transform="translate(481.09 59.78)"><tspan x="0" y="0">Retention</tspan></text>
+  <text class="cls-5" transform="translate(420.69 92.42)"><tspan x="0" y="0">Creating a mental mode</tspan></text>
+  <text class="cls-15" transform="translate(622.72 92.42)"><tspan x="0" y="0">l </tspan></text>
+  <text class="cls-5" transform="translate(414.58 118.83)"><tspan x="0" y="0">(using images and words)</tspan></text>
+  <text class="cls-15" transform="translate(633.64 118.83)"><tspan x="0" y="0"> </tspan></text>
+  <text class="cls-2" transform="translate(406.62 145.23)"><tspan x="0" y="0">to recall their behaviour</tspan></text>
+  <text class="cls-5" transform="translate(601.54 145.23)"><tspan x="0" y="0">, an</tspan></text>
+  <text class="cls-15" transform="translate(630.43 145.23)"><tspan x="0" y="0">d </tspan></text>
+  <text class="cls-4" transform="translate(436.17 171.63)"><tspan x="0" y="0">pr</tspan></text>
+  <text class="cls-5" transform="translate(452.8 171.63)"><tspan x="0" y="0">actising response</tspan></text>
+  <text class="cls-15" transform="translate(601.85 171.63)"><tspan x="0" y="0">s</tspan></text>
+  <text class="cls-16" transform="translate(464.44 271.96)"><tspan x="0" y="0">Repr</tspan></text>
+  <text class="cls-16" transform="translate(505.8 271.96)"><tspan x="0" y="0">oduction</tspan></text>
+  <text class="cls-12" transform="translate(429.93 304.6)"><tspan x="0" y="0">Tr</tspan></text>
+  <text class="cls-5" transform="translate(446.55 304.6)"><tspan x="0" y="0">anslating the mental</tspan></text>
+  <text class="cls-15" transform="translate(618.29 304.6)"><tspan x="0" y="0"> </tspan></text>
+  <text class="cls-1" transform="translate(423.36 331)"><tspan x="0" y="0">model back into actions</tspan></text>
+  <path class="cls-21" d="M307.38,64.6s35.03-11.88,81.18-1.28"/>
+  <polyline class="cls-22" points="400.93 66.16 381.36 53.49 377.79 69.02 400.93 66.16"/>
+  <path class="cls-21" d="M399.63,364.27s-35.03,11.88-81.18,1.28"/>
+  <polyline class="cls-22" points="306.09 362.71 325.65 375.39 329.22 359.85 306.09 362.71"/>
+  <path class="cls-21" d="M633.53,169.09s11.88,35.03,1.28,81.18"/>
+  <polyline class="cls-22" points="631.97 262.64 644.64 243.07 629.1 239.5 631.97 262.64"/>
+  <path class="cls-21" d="M67.25,261.34s-11.88-35.03-1.28-81.18"/>
+  <polyline class="cls-22" points="68.81 167.8 56.14 187.36 71.68 190.93 68.81 167.8"/>
+</svg>

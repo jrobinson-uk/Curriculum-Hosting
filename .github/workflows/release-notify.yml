@@ -1,0 +1,66 @@
+name: Release Notification
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  notify-slack:
+    # Logic: Only run if the PR was merged AND contains the 'release-notify' label
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'release-notify')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Release Note to Slack
+        uses: slackapi/slack-github-action@v1.24.0
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+        with:
+          # This JSON constructs a pretty "Release Note" UI in Slack
+          payload: |
+            {
+              "text": "New Release to Main: ${{ github.event.pull_request.title }}",
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "🚀 New Update Released",
+                    "emoji": true
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Update:* ${{ github.event.pull_request.title }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Author:* ${{ github.event.pull_request.user.login }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "divider"
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Release Notes:*\n${{ github.event.pull_request.body }}"
+                  }
+                },
+                {
+                  "type": "context",
+                  "elements": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "<${{ github.event.pull_request.html_url }}|View Pull Request>"
+                    }
+                  ]
+                }
+              ]
+            }

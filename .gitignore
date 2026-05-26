@@ -1,0 +1,76 @@
+# Dependencies
+/node_modules
+
+# Production
+/public
+
+# Generated files
+.docusaurus
+.cache-loader
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+workspace.json
+
+quartz/.quartz-cache
+
+.obsidian/*
+!.obsidian/community-plugins.json
+!.obsidian/plugins/
+
+# Adds Cmdr Plugin
+!.obsidian/plugins/cmdr/
+!.obsidian/plugins/cmdr/data.json
+!.obsidian/plugins/cmdr/main.js
+!.obsidian/plugins/cmdr/manifest.json
+!.obsidian/plugins/cmdr/styles.css
+
+# Adds Obsidian Git Plugin
+!.obsidian/plugins/obsidian-git/
+!.obsidian/plugins/obsidian-git/data.json
+!.obsidian/plugins/obsidian-git/main.js
+!.obsidian/plugins/obsidian-git/manifest.json
+!.obsidian/plugins/obsidian-git/styles.css
+
+# Adds Obsidian Shell Commands Plugin
+!.obsidian/plugins/obsidian-shellcommands/
+!.obsidian/plugins/obsidian-shellcommands/data.json
+!.obsidian/plugins/obsidian-shellcommands/main.js
+!.obsidian/plugins/obsidian-shellcommands/manifest.json
+!.obsidian/plugins/obsidian-shellcommands/styles.css
+
+# Adds File Explorer Plus Plugin
+!.obsidian/plugins/file-explorer-plus/
+!.obsidian/plugins/file-explorer-plus/data.json
+!.obsidian/plugins/file-explorer-plus/main.js
+!.obsidian/plugins/file-explorer-plus/manifest.json
+!.obsidian/plugins/file-explorer-plus/styles.css
+
+# Adds Obsidian Icon Plugin
+!.obsidian/plugins/obsidian-icon-folder/
+!.obsidian/plugins/obsidian-icon-folder/data.json
+!.obsidian/plugins/obsidian-icon-folder/main.js
+!.obsidian/plugins/obsidian-icon-folder/manifest.json
+!.obsidian/plugins/obsidian-icon-folder/styles.css
+
+# Adds Obsidian Editing Toolbar Plugin
+!.obsidian/plugins/editing-toolbar/
+!.obsidian/plugins/editing-toolbar/data.json
+!.obsidian/plugins/editing-toolbar/main.js
+!.obsidian/plugins/editing-toolbar/manifest.json
+!.obsidian/plugins/editing-toolbar/styles.css
+
+# Adds Obsidian Auto Split Plugin
+!.obsidian/plugins/obsidian-auto-split/
+!.obsidian/plugins/obsidian-auto-split/data.json
+!.obsidian/plugins/obsidian-auto-split/main.js
+!.obsidian/plugins/obsidian-auto-split/manifest.json
+!.obsidian/plugins/obsidian-auto-split/styles.css

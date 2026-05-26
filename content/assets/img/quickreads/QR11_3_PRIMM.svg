@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 322.9 222.9" style="enable-background:new 0 0 322.9 222.9;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#251445;}
+	.st1{fill:#666864;}
+	.st2{fill:#5AA7D9;}
+	.st3{fill:#282C2E;}
+	.st4{fill:#FFFFFF;}
+	.st5{fill:none;}
+	.st6{fill:#F7941D;}
+	.st7{font-family:'RobotoMono-Regular';}
+	.st8{font-size:15.7497px;}
+	.st9{fill:#2B65B0;}
+	.st10{fill:#91278F;}
+</style>
+<g id="Layer_3">
+</g>
+<g id="Layer_1">
+</g>
+<g id="Layer_4">
+</g>
+<g id="Layer_2">
+	<path class="st4" d="M299.4,210.7H21.2c-4.3,0-7.7-3.4-7.7-7.7V21.6c0-4.3,3.4-7.7,7.7-7.7h278.1c4.3,0,7.7,3.4,7.7,7.7V203
+		C307.1,207.2,303.6,210.7,299.4,210.7z"/>
+	<rect x="25.8" y="32.1" class="st5" width="266.3" height="166.2"/>
+	<text transform="matrix(1 0 0 1 25.8012 43.9446)"><tspan x="0" y="0" class="st6 st7 st8">from</tspan><tspan x="36.2" y="0" class="st7 st8"> turtle </tspan><tspan x="108.7" y="0" class="st6 st7 st8">import</tspan><tspan x="163" y="0" class="st7 st8"> *</tspan><tspan x="0" y="17.5" class="st6 st7 st8">def</tspan><tspan x="27.2" y="17.5" class="st7 st8"> </tspan><tspan x="36.2" y="17.5" class="st9 st7 st8">square</tspan><tspan x="90.6" y="17.5" class="st7 st8"> ():</tspan><tspan x="0" y="35" class="st7 st8">    </tspan><tspan x="36.2" y="35" class="st6 st7 st8">for</tspan><tspan x="63.4" y="35" class="st7 st8"> counter </tspan><tspan x="144.9" y="35" class="st6 st7 st8">in</tspan><tspan x="163" y="35" class="st7 st8"> </tspan><tspan x="172.1" y="35" class="st10 st7 st8">range </tspan><tspan x="226.4" y="35" class="st7 st8">(4):</tspan><tspan x="0" y="52.5" class="st7 st8">        forward(100)</tspan><tspan x="0" y="70" class="st7 st8">        right(90)</tspan><tspan x="0" y="105" class="st7 st8">square()</tspan><tspan x="0" y="122.5" class="st7 st8">left(45)</tspan><tspan x="0" y="140" class="st7 st8">square()</tspan></text>
+</g>
+<g id="Layer_5">
+</g>
+</svg>

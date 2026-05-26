@@ -1,0 +1,193 @@
+// Imports the base styles from Quartz
+@use "./base.scss";
+
+// --- [ START ] Final Fixed Layout ---
+
+// 1. Reset the body to override the theme's conflicting grid layout
+
+.full-width {
+  width: 100%;
+}
+
+#quartz-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; // Full viewport height
+}
+
+header {
+  flex-shrink: 0; // Prevent the header from shrinking
+  border-bottom: 2px solid var(--lightgray);
+ overflow: hidden;
+}
+
+#quartz-body {
+  flex-grow: 1; // Allow the body to take up all remaining vertical space
+overflow: auto;
+  display: grid;
+  grid-template-columns: 20rem 1fr 20rem;
+
+  // Add vertical borders between the columns
+  > .sidebar.left {
+    border-right: 2px solid var(--lightgray);
+  }
+  > .sidebar.right {
+    border-left: 2px solid var(--lightgray);
+  }
+}
+
+
+.sidebar {
+  overflow: hidden; // Add a scrollbar only if their own content is too tall
+}
+
+/* Glossary Card Styles for Verification */
+.glossary-card {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--light);
+}
+
+.glossary-page {
+  
+  // Base formatting for these specific callouts
+  .callout[data-callout="primary"],
+  .callout[data-callout="secondary"],
+  .callout[data-callout="educator"] {
+    border-radius: 4px;
+    border-left-width: 6px; // Distinctive thick border
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  
+   .callout-title-inner {
+    flex: 1;
+    margin: 0 !important;
+    p { margin: 0 !important; } // Removes paragraph spacing that can offset centering
+  }
+
+  .callout-title {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.5rem 0rem !important;
+    box-sizing: border-box !important; // Ensures padding doesn't cause overflow/scrollbars
+    gap: 8px;
+  }
+
+  .callout-copy-button {
+    margin-left: auto !important; // Pushes button to far right without breaking flex alignment
+    appearance: none;
+    background: var(--highlight);
+    border: 1px solid var(--lightgray);
+    border-radius: 4px;
+    color: var(--dark);
+    cursor: pointer;
+    font-family: var(--bodyFont);
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 4px 8px;
+    transition: all 0.2s ease;
+    white-space: nowrap; // Prevents button text from wrapping
+    z-index: 10;∂
+    &:hover {
+      background: var(--secondary);
+      color: var(--white);
+      border-color: var(--secondary);
+    }
+
+    &.success {
+      background: #10b981;
+      color: white;
+      border-color: #10b981;
+    }
+  }
+  // Primary (Blue)
+  .callout[data-callout="primary"] {
+    --color: var(--blue);
+    border: 1px solid var(--color);
+    border-left: 6px solid var(--color);
+    background-color: color-mix(in srgb, var(--color), var(--light) 85%);
+
+    .callout-icon {
+      mask-image: url("/assets/img/glossary/primary.svg") !important; 
+      background-color: var(--color) !important;
+    }
+    
+    .callout-title {
+      color: var(--color);
+      font-weight: 700;
+    }
+  }
+
+  // Secondary (Purple)
+  .callout[data-callout="secondary"] {
+    --color: var(--purple);
+    border: 1px solid var(--color);
+    border-left: 6px solid var(--color);
+    // Mix 10% of the purple color with the background color (--light)
+    background-color: color-mix(in srgb, var(--color), var(--light) 85%);
+    .callout-icon {
+      mask-image: url("/assets/img/glossary/secondary.svg") !important; 
+      background-color: var(--color) !important;
+    }
+
+    .callout-title {
+      color: var(--color);
+    }
+  }
+
+  // Educator (Green)
+  .callout[data-callout="educator"] {
+    --color: var(--green);
+    border: 1px solid var(--color);
+    border-left: 6px solid var(--color);
+    background-color: color-mix(in srgb, var(--color), var(--light) 85%);
+    .callout-icon {
+      mask-image: url("/assets/img/glossary/educator.svg") !important; 
+      background-color: var(--color) !important;
+    }
+
+    .callout-title {
+      color: var(--color);
+    }
+  }
+}
+
+.alphabet-group {
+  margin-top: 2rem;
+  .alphabet-header {
+    border-bottom: 1px solid var(--lightgray);
+    color: var(--secondary);
+    margin-bottom: 1rem;
+  }
+}
+
+/* Specific colors per stage to prove logic works */
+.stage-stage-1 { border-left: 5px solid #FF5733; } /* Orange */
+.stage-stage-2 { border-left: 5px solid #33FF57; } /* Green */
+.stage-stage-3 { border-left: 5px solid #3357FF; } /* Blue */
+
+footer {
+  p {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  // Collapse the domain line and the credits line into one row
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  // Remove the default top margin on <p> to keep things tight
+  p {
+    margin: 0;
+  }
+}

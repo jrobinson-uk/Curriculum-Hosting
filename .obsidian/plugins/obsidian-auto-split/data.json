@@ -1,0 +1,8 @@
+{
+  "autoSplit": false,
+  "minSize": 1000,
+  "direction": "auto",
+  "editorFirst": true,
+  "paneToFocus": "source",
+  "linkPanes": true
+}

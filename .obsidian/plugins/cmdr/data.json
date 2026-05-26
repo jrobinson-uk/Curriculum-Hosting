@@ -1,0 +1,58 @@
+{
+  "confirmDeletion": false,
+  "showAddCommand": true,
+  "debug": false,
+  "editorMenu": [],
+  "fileMenu": [],
+  "leftRibbon": [
+    {
+      "id": "obsidian-shellcommands:shell-command-d1fid6i10s",
+      "icon": "lucide-brick-wall",
+      "name": "Shell commands: Execute: Quartz Build",
+      "mode": "any",
+      "color": "#7f3fa2"
+    },
+    {
+      "id": "obsidian-shellcommands:shell-command-jqapicrzj1",
+      "icon": "lucide-server",
+      "name": "Shell commands: Execute: Start Preview Server",
+      "mode": "any",
+      "color": "#55b42d"
+    },
+    {
+      "id": "obsidian-shellcommands:shell-command-wvvrn81j9n",
+      "icon": "lucide-server-off",
+      "name": "Shell commands: Execute: Stop Preview Server",
+      "mode": "any",
+      "color": "#a63030"
+    },
+    {
+      "id": "obsidian-shellcommands:shell-command-4c6j21dpfp",
+      "icon": "lucide-play-square",
+      "name": "Shell commands: Execute: Open Preview",
+      "mode": "any",
+      "color": "#516bb8"
+    }
+  ],
+  "rightRibbon": [],
+  "titleBar": [],
+  "statusBar": [],
+  "pageHeader": [],
+  "macros": [],
+  "explorer": [],
+  "hide": {
+    "statusbar": [],
+    "leftRibbon": []
+  },
+  "spacing": 8,
+  "advancedToolbar": {
+    "rowHeight": 48,
+    "rowCount": 1,
+    "spacing": 0,
+    "buttonWidth": 48,
+    "columnLayout": false,
+    "mappedIcons": [],
+    "tooltips": false,
+    "heightOffset": 0
+  }
+}
