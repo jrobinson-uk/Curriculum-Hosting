@@ -1,5 +1,5 @@
 // ID of the root Google Drive folder to crawl — replace with your own
-var ROOT_FOLDER_ID = 'YOUR_ROOT_FOLDER_ID_HERE';
+var ROOT_FOLDER_ID = '1MijRFIBWClcl_obwH8--lJCcGYxggCtF';
 
 var SHEET_NAME = 'Drive Structure';
 
