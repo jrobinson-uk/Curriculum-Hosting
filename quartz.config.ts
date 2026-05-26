@@ -18,8 +18,8 @@ const config: QuartzConfig = {
       tagId: "G-66DJ1HCXEB"
     },
     locale: "en-GB",
-    baseUrl: "teaching-learning-docs.rpf-internal.org",
-    github: "https://github.com/RaspberryPiFoundation/teaching-learning-documentation/",
+    baseUrl: "jrobinson-uk.github.io/Curriculum-Hosting",
+    github: "https://github.com/jrobinson-uk/Curriculum-Hosting/",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
