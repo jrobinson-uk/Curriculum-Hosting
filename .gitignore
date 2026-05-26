@@ -4,9 +4,6 @@
 # Production
 /public
 
-# Generated Drive pages (rebuilt on every deploy)
-/content/drive
-
 # Generated files
 .docusaurus
 .cache-loader
