@@ -85,30 +85,37 @@ function iconLink(href, iconUrl, title, alt) {
 }
 
 /**
- * Render a markdown table of files with Drive / Office / PDF icon links.
- * iconBase — absolute URL prefix, e.g. https://example.com/icons
+ * Render a markdown table of files with thumbnail, Drive / Office / PDF icon links.
+ * iconBase — absolute URL prefix, e.g. https://example.com/static/icons
  */
 function buildFileTable(files, iconBase) {
   const driveIcon  = `${iconBase}/drive.svg`
   const officeIcon = `${iconBase}/office.svg`
   const pdfIcon    = `${iconBase}/pdf.svg`
 
-  const headerRow = '| File | Drive | Office | PDF |'
-  const separator = '|------|:-----:|:------:|:---:|'
+  const headerRow = '| Preview | File | Drive | Office | PDF |'
+  const separator = '|:-------:|------|:-----:|:------:|:---:|'
 
   const rows = files.map(f => {
     // Escape pipe characters in file names to avoid breaking the table
     const name      = (f['Name'] || 'Unnamed').replace(/\|/g, '\\|')
+    const fileId    = f['File ID']
     const driveUrl  = f['URL']
     const officeUrl = f['Export (Office)']
     const pdfUrl    = f['Export (PDF)']
     const mimeType  = f['MIME Type']
 
+    // Drive thumbnail — works for Docs, Sheets, Slides, PDFs, images
+    const thumbUrl   = `https://drive.google.com/thumbnail?id=${fileId}&sz=w200`
+    const thumbCell  = driveUrl
+      ? `<a href="${driveUrl}" target="_blank" rel="noopener"><img src="${thumbUrl}" width="120" alt="Preview of ${name}" style="border-radius:4px;vertical-align:middle"></a>`
+      : ''
+
     const driveCell  = iconLink(driveUrl,  driveIcon,  'Open in Google Drive',                 'Open in Drive')
     const officeCell = iconLink(officeUrl, officeIcon, `Download as ${officeLabel(mimeType)}`,  'Download Office')
     const pdfCell    = iconLink(pdfUrl,    pdfIcon,    'Download as PDF',                       'Download PDF')
 
-    return `| **${name}** | ${driveCell} | ${officeCell} | ${pdfCell} |`
+    return `| ${thumbCell} | **${name}** | ${driveCell} | ${officeCell} | ${pdfCell} |`
   })
 
   return [headerRow, separator, ...rows].join('\n')
