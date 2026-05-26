@@ -126,7 +126,8 @@ async function main() {
 
   // Icon base URL — strip trailing slash so we can always append /drive.svg etc.
   const siteUrl  = (config.siteUrl || '').replace(/\/$/, '')
-  const iconBase = siteUrl ? `${siteUrl}/icons` : '/icons'
+  // Quartz copies quartz/static/ → public/static/, so icons live at /static/icons/
+  const iconBase = siteUrl ? `${siteUrl}/static/icons` : '/static/icons'
 
   console.log('Fetching Drive structure from Google Sheets…')
   const res = await fetch(config.csvUrl)
