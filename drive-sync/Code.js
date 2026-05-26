@@ -19,7 +19,9 @@ var HEADERS = [
   'File Size (bytes)',
   'Sharing Access',
   'Children Count',
-  'URL'
+  'URL',
+  'Export (Office)',
+  'Export (PDF)'
 ];
 
 var MIME_LABELS = {
@@ -136,6 +138,8 @@ function buildRow(item, fullPath, depth, isFolder) {
     } catch (e) {}
   }
 
+  var exportUrls = getExportUrls(item.getId(), mimeType, isFolder);
+
   return [
     item.getId(),
     item.getName(),
@@ -152,8 +156,55 @@ function buildRow(item, fullPath, depth, isFolder) {
     size,
     item.getSharingAccess().toString(),
     childrenCount,
-    item.getUrl()
+    item.getUrl(),
+    exportUrls[0],
+    exportUrls[1]
   ];
+}
+
+// ---------------------------------------------------------------------------
+// Export URL helpers
+// ---------------------------------------------------------------------------
+
+// Maps Google Workspace MIME types to their Office export format and base URL
+var EXPORT_CONFIG = {
+  'application/vnd.google-apps.document': {
+    officeFormat: 'docx',
+    baseUrl: 'https://docs.google.com/document/d/'
+  },
+  'application/vnd.google-apps.spreadsheet': {
+    officeFormat: 'xlsx',
+    baseUrl: 'https://docs.google.com/spreadsheets/d/'
+  },
+  'application/vnd.google-apps.presentation': {
+    officeFormat: 'pptx',
+    baseUrl: 'https://docs.google.com/presentation/d/'
+  },
+  'application/vnd.google-apps.drawing': {
+    officeFormat: 'svg',
+    baseUrl: 'https://docs.google.com/drawings/d/'
+  }
+};
+
+function getExportUrls(id, mimeType, isFolder) {
+  if (isFolder) return ['', ''];
+
+  var config = EXPORT_CONFIG[mimeType];
+
+  if (config) {
+    var officeUrl = config.baseUrl + id + '/export?format=' + config.officeFormat;
+    var pdfUrl    = config.baseUrl + id + '/export?format=pdf';
+    return [officeUrl, pdfUrl];
+  }
+
+  // For native PDFs, the file itself is the PDF — provide a direct download link
+  if (mimeType === 'application/pdf') {
+    var directUrl = 'https://drive.google.com/uc?export=download&id=' + id;
+    return ['', directUrl];
+  }
+
+  // All other file types (images, video, etc.) — no applicable export
+  return ['', ''];
 }
 
 // ---------------------------------------------------------------------------
