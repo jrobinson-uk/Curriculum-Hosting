@@ -188,6 +188,7 @@ td a img[alt^="Preview"] {
   min-height: 68px;        // reserve space while loading
   background: var(--lightgray);
   border-radius: 4px;
+  border: 1px solid var(--lightgray);
 }
 td a img[alt^="Preview"]:not([src]),
 td a img[alt^="Preview"][src=""] {

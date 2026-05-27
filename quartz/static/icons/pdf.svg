@@ -1,4 +1,11 @@
-<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#EC1C24">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="PDF">
   <title>PDF</title>
-  <path d="M14 0H2a2 2 0 0 0-2 2v20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6zM13 7V1.5L18.5 7zM8.5 14.5c0 .828-.672 1.5-1.5 1.5H6v2H4.5v-6H7c.828 0 1.5.672 1.5 1.5zm4 0c0 1.657-1.343 3-3 3H8v-6h1.5c1.657 0 3 1.343 3 3zm4-1.5h-2v1h1.5v1.5H14.5v2H13v-6h3.5z"/>
+  <!-- Red background -->
+  <rect width="24" height="24" rx="3" fill="#EC1C24"/>
+  <!-- White document with folded corner -->
+  <path d="M5 2.5 L14.5 2.5 L18.5 6.5 L18.5 21.5 L5 21.5 Z" fill="white"/>
+  <!-- Dark red fold triangle -->
+  <path d="M14.5 2.5 L14.5 6.5 L18.5 6.5 Z" fill="#B01010"/>
+  <!-- Red "PDF" label text -->
+  <text x="11.75" y="16.5" font-family="Arial, Helvetica, sans-serif" font-size="5" font-weight="bold" fill="#EC1C24" text-anchor="middle" letter-spacing="0.3">PDF</text>
 </svg>
