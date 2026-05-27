@@ -230,7 +230,7 @@ function getOrGenerateThumbnail(file, imgFolder, thumbCache) {
   var token = ScriptApp.getOAuthToken();
   try {
     var metaResponse = UrlFetchApp.fetch(
-      'https://www.googleapis.com/drive/v3/files/' + fileId + '?fields=thumbnailLink&supportsAllDrives=true',
+      'https://www.googleapis.com/drive/v3/files/' + fileId + '?fields=mimeType,hasThumbnail,thumbnailLink&supportsAllDrives=true',
       {
         headers: { 'Authorization': 'Bearer ' + token },
         muteHttpExceptions: true
@@ -239,14 +239,23 @@ function getOrGenerateThumbnail(file, imgFolder, thumbCache) {
 
     if (metaResponse.getResponseCode() !== 200) return '';
 
-    var thumbnailLink = JSON.parse(metaResponse.getContentText()).thumbnailLink;
-    if (!thumbnailLink) return '';
+    var metaData     = JSON.parse(metaResponse.getContentText());
+    var thumbnailLink = metaData.thumbnailLink;
+    var mimeType      = metaData.mimeType;
 
-    // Request a larger size (Drive thumbnail URLs end with =s<size>)
-    thumbnailLink = thumbnailLink.replace(/=s\d+([^&]*)$/, '=s800$1');
+    var fetchUrl;
+    if (thumbnailLink) {
+      // Request a larger size (Drive thumbnail URLs end with =s<size>)
+      fetchUrl = thumbnailLink.replace(/=s\d+([^&]*)$/, '=s800$1');
+    } else if (mimeType === 'application/vnd.google-apps.presentation') {
+      // Slides fallback: export first slide as PNG
+      fetchUrl = 'https://docs.google.com/presentation/d/' + fileId + '/export/png';
+    } else {
+      return ''; // no thumbnail available for this file
+    }
 
     // Download the thumbnail image
-    var imgResponse = UrlFetchApp.fetch(thumbnailLink, {
+    var imgResponse = UrlFetchApp.fetch(fetchUrl, {
       headers: { 'Authorization': 'Bearer ' + token },
       muteHttpExceptions: true
     });
@@ -402,12 +411,12 @@ function debugThumbnail() {
     return;
   }
 
-  // Step 2 — Drive API metadata (thumbnailLink)
-  var thumbnailLink;
+  // Step 2 — Drive API metadata (thumbnailLink + hasThumbnail)
+  var thumbnailLink, mimeType;
   try {
     var metaResp = UrlFetchApp.fetch(
       'https://www.googleapis.com/drive/v3/files/' + testFileId +
-        '?fields=id,name,mimeType,thumbnailLink&supportsAllDrives=true',
+        '?fields=id,name,mimeType,hasThumbnail,thumbnailLink&supportsAllDrives=true',
       { headers: { 'Authorization': 'Bearer ' + token }, muteHttpExceptions: true }
     );
     var code = metaResp.getResponseCode();
@@ -417,25 +426,52 @@ function debugThumbnail() {
       return;
     }
     var meta = JSON.parse(metaResp.getContentText());
-    Logger.log('OK    File: "' + meta.name + '"  mimeType: ' + meta.mimeType);
+    mimeType = meta.mimeType;
+    Logger.log('OK    File: "' + meta.name + '"  mimeType: ' + mimeType);
+    Logger.log('INFO  hasThumbnail: ' + meta.hasThumbnail);
     thumbnailLink = meta.thumbnailLink;
+
     if (!thumbnailLink) {
-      Logger.log('WARN  thumbnailLink is empty for this file type.');
-      Logger.log('      Try a Google Doc, Sheet, or Slides file.');
-      return;
+      if (!meta.hasThumbnail) {
+        Logger.log('WARN  hasThumbnail=false — the file has no content or Drive has not');
+        Logger.log('      generated a preview yet. Open the file in Drive and save it,');
+        Logger.log('      then try again. Empty test files will never have thumbnails.');
+      } else {
+        Logger.log('WARN  hasThumbnail=true but thumbnailLink missing — trying export fallback');
+      }
+
+      // Fallback for Slides: export the first slide as PNG directly
+      if (mimeType === 'application/vnd.google-apps.presentation') {
+        Logger.log('INFO  Trying Slides export/png fallback…');
+        thumbnailLink = null; // will use export URL below
+      } else {
+        Logger.log('INFO  No thumbnail available for this file. In production the');
+        Logger.log('      Preview cell will be left empty for files without thumbnails.');
+        return;
+      }
+    } else {
+      Logger.log('OK    thumbnailLink: ' + thumbnailLink.substring(0, 80) + '...');
     }
-    Logger.log('OK    thumbnailLink: ' + thumbnailLink.substring(0, 80) + '...');
   } catch (e) {
     Logger.log('FAIL  Drive API call: ' + e.message);
     return;
   }
 
-  // Step 3 — Fetch the image
+  // Step 3 — Fetch the image (thumbnailLink or Slides export fallback)
   var blob;
   try {
-    var sizedLink = thumbnailLink.replace(/=s\d+([^&]*)$/, '=s800$1');
-    Logger.log('INFO  Fetching image: ' + sizedLink.substring(0, 80) + '...');
-    var imgResp = UrlFetchApp.fetch(sizedLink, {
+    var fetchUrl;
+    if (thumbnailLink) {
+      fetchUrl = thumbnailLink.replace(/=s\d+([^&]*)$/, '=s800$1');
+    } else if (mimeType === 'application/vnd.google-apps.presentation') {
+      // Export the first slide of a Slides file as PNG
+      fetchUrl = 'https://docs.google.com/presentation/d/' + testFileId + '/export/png';
+    } else {
+      Logger.log('INFO  No image source available — skipping');
+      return;
+    }
+    Logger.log('INFO  Fetching image: ' + fetchUrl.substring(0, 80) + '...');
+    var imgResp = UrlFetchApp.fetch(fetchUrl, {
       headers: { 'Authorization': 'Bearer ' + token }, muteHttpExceptions: true
     });
     var imgCode = imgResp.getResponseCode();
