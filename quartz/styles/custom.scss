@@ -174,10 +174,10 @@ overflow: auto;
 // Drive file table — Preview column
 // ---------------------------------------------------------------------------
 
-// Quartz adds an ↗ external-link icon (::after) to all outbound <a> tags.
-// Suppress it for all links inside table cells — the icon indicator adds no
-// value here and clutters icon/thumbnail columns.
-td a::after {
+// Quartz injects a real <svg class="external-icon"> element into every
+// outbound link via links.ts. Suppress it inside table cells — the indicator
+// adds no value and clutters icon/thumbnail columns.
+td a svg.external-icon {
   display: none !important;
 }
 
