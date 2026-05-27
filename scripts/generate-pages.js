@@ -176,7 +176,6 @@ async function main() {
   if (fs.existsSync(CONTENT_DIR)) fs.rmSync(CONTENT_DIR, { recursive: true })
 
   let generated = 0
-  let skipped   = 0
 
   // Helper: relative path from the root folder name
   function relPath(fullPath) {
@@ -199,54 +198,27 @@ async function main() {
     // ------------------------------------------------------------------
     // Folder categorisation:
     //
-    //  • Pure-subfolder (no files, has subs):
-    //      Skip index.md for non-root → Quartz FolderPage auto-generates
-    //      a card grid for the subfolders.
-    //      Root folder always gets an index.md so the wikilink from
-    //      content/index.md resolves correctly.
+    // Every folder always gets an index.md so its title is available to
+    // the parent FolderPage card grid (folders without index.md show as
+    // "Untitled" in parent listings).  The Quartz FolderContent component
+    // renders BOTH the markdown body AND the subfolder card grid, so
+    // having an index.md does NOT suppress the card grid.
     //
-    //  • Leaf (has files, no subs):
-    //      Generate index.md with a file table.
-    //
-    //  • Mixed (has files AND subs):
-    //      Generate index.md with subfolder links followed by file table.
-    //      Subfolders are still navigable via Quartz's Explorer sidebar.
-    //
-    //  • Empty folder (no files, no subs):
-    //      Generate a minimal index.md so the folder appears in navigation.
+    //  • Folders with files (leaf or mixed): frontmatter + file table
+    //  • Pure-subfolder / empty folders:     frontmatter only (body empty)
     // ------------------------------------------------------------------
 
     let body = '\n'
 
-    if (!hasFiles && hasSubs && !isRoot) {
-      // Pure-subfolder, non-root: let Quartz FolderPage handle it
-      skipped++
-      continue
-    }
-
     if (hasSubs && hasFiles) {
-      // Mixed: list subfolders first, then file table
-      body += '## Subfolders\n\n'
-      for (const sub of subfolders) {
-        const subName    = sub['Name']
-        const subSegment = safePath(subName)
-        body += `- [${subName}](./${subSegment}/)\n`
-      }
-      body += '\n## Files\n\n'
+      // Mixed: file table only — FolderContent renders subfolder cards automatically
       body += buildFileTable(files, iconBase) + '\n'
     } else if (hasFiles) {
       // Leaf: just the file table
       body += buildFileTable(files, iconBase) + '\n'
-    } else if (hasSubs && !hasFiles) {
-      // Root-only pure-subfolder case
-      body += '## Subfolders\n\n'
-      for (const sub of subfolders) {
-        const subName    = sub['Name']
-        const subSegment = safePath(subName)
-        body += `- [${subName}](./${subSegment}/)\n`
-      }
     }
-    // else empty folder: body stays as '\n'
+    // Pure-subfolder (any level) or empty: body stays as '\n'
+    // FolderContent will render the card grid from the trie regardless
 
     const fm = frontmatter({
       title: row['Name'],
@@ -261,7 +233,7 @@ async function main() {
     generated++
   }
 
-  console.log(`Done — generated ${generated} folder pages (skipped ${skipped} pure-subfolder folders for Quartz auto-rendering) in content/drive/`)
+  console.log(`Done — generated ${generated} folder pages in content/drive/`)
 }
 
 main().catch(err => { console.error(err); process.exit(1) })
