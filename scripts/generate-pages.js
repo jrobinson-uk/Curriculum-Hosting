@@ -53,6 +53,44 @@ function officeLabel(mimeType) {
   return OFFICE_LABELS[mimeType] || 'Office file'
 }
 
+// ---------------------------------------------------------------------------
+// Language detection — filename pattern: "Lesson Plan (en).pdf"
+// ---------------------------------------------------------------------------
+
+const LANG_RE = /\s*\(([a-z]{2,4})\)\s*/i
+
+const LANGUAGE_NAMES = {
+  en:  'English',
+  af:  'Afrikaans',
+  xh:  'Xhosa',
+  zu:  'Zulu',
+  st:  'Sesotho',
+  nso: 'Sepedi',
+  tn:  'Setswana',
+  ss:  'Siswati',
+  ve:  'Tshivenda',
+  ts:  'Xitsonga',
+  nr:  'isiNdebele',
+}
+
+function extractLang(name) {
+  const m = name.match(LANG_RE)
+  return m ? m[1].toLowerCase() : null
+}
+
+function langDisplayName(code) {
+  return LANGUAGE_NAMES[code] ?? code.toUpperCase()
+}
+
+function stripLang(name) {
+  return name.replace(LANG_RE, '').replace(/\s+\./g, '.').replace(/\s{2,}/g, ' ').trim()
+}
+
+/** Returns true if any file in the list has a language code in its name. */
+function isLanguageLeaf(files) {
+  return files.some(f => extractLang(f['Name']) !== null)
+}
+
 function safePath(p) {
   return p.replace(/[<>:"|?*]/g, '_')
 }
@@ -81,7 +119,7 @@ function frontmatter(fields) {
  */
 function iconLink(href, iconUrl, title, alt) {
   if (!href) return '–'
-  return `<a href="${href}" title="${title}" target="_blank" rel="noopener"><img src="${iconUrl}" width="24" height="24" alt="${alt}" style="vertical-align:middle"></a>`
+  return `<a href="${href}" title="${title}" target="_blank" rel="noopener"><img src="${iconUrl}" width="40" height="40" alt="${alt}" style="vertical-align:middle"></a>`
 }
 
 /**
@@ -118,6 +156,44 @@ function buildFileTable(files, iconBase) {
   })
 
   return [headerRow, separator, ...rows].join('\n')
+}
+
+/**
+ * Render files grouped by language code under ## headings.
+ * Files whose names contain no language tag go under "Other".
+ * The language tag is stripped from the displayed file name.
+ */
+function buildLanguageGroupedTables(files, iconBase) {
+  const groups = new Map()
+
+  for (const f of files) {
+    const lang = extractLang(f['Name']) ?? '_other'
+    if (!groups.has(lang)) groups.set(lang, [])
+    groups.get(lang).push(f)
+  }
+
+  // Sort groups: English first, then alphabetical by display name, unlabelled last
+  const sorted = [...groups.entries()].sort(([a], [b]) => {
+    if (a === 'en') return -1
+    if (b === 'en') return 1
+    if (a === '_other') return 1
+    if (b === '_other') return -1
+    return langDisplayName(a).localeCompare(langDisplayName(b))
+  })
+
+  let out = ''
+  for (const [lang, langFiles] of sorted) {
+    const heading = lang === '_other' ? 'Other' : langDisplayName(lang)
+    // Sort files within each group by stripped name
+    const sortedFiles = [...langFiles].sort((a, b) =>
+      stripLang(a['Name']).localeCompare(stripLang(b['Name']))
+    )
+    // Strip language tag from display names for this group
+    const displayFiles = sortedFiles.map(f => ({ ...f, Name: stripLang(f['Name']) }))
+    out += `\n## ${heading}\n\n`
+    out += buildFileTable(displayFiles, iconBase) + '\n'
+  }
+  return out
 }
 
 // ---------------------------------------------------------------------------
@@ -209,12 +285,14 @@ async function main() {
 
     let body = '\n'
 
-    if (hasSubs && hasFiles) {
-      // Mixed: file table only — FolderContent renders subfolder cards automatically
-      body += buildFileTable(files, iconBase) + '\n'
-    } else if (hasFiles) {
-      // Leaf: just the file table
-      body += buildFileTable(files, iconBase) + '\n'
+    if (hasFiles) {
+      if (isLanguageLeaf(files)) {
+        // Language leaf: group files by language under ## headings
+        body += buildLanguageGroupedTables(files, iconBase)
+      } else {
+        // Plain file table (mixed or leaf without language codes)
+        body += buildFileTable(files, iconBase) + '\n'
+      }
     }
     // Pure-subfolder (any level) or empty: body stays as '\n'
     // FolderContent will render the card grid from the trie regardless
