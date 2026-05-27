@@ -230,7 +230,7 @@ function getOrGenerateThumbnail(file, imgFolder, thumbCache) {
   var token = ScriptApp.getOAuthToken();
   try {
     var metaResponse = UrlFetchApp.fetch(
-      'https://www.googleapis.com/drive/v3/files/' + fileId + '?fields=thumbnailLink',
+      'https://www.googleapis.com/drive/v3/files/' + fileId + '?fields=thumbnailLink&supportsAllDrives=true',
       {
         headers: { 'Authorization': 'Bearer ' + token },
         muteHttpExceptions: true
@@ -407,7 +407,7 @@ function debugThumbnail() {
   try {
     var metaResp = UrlFetchApp.fetch(
       'https://www.googleapis.com/drive/v3/files/' + testFileId +
-        '?fields=id,name,mimeType,thumbnailLink',
+        '?fields=id,name,mimeType,thumbnailLink&supportsAllDrives=true',
       { headers: { 'Authorization': 'Bearer ' + token }, muteHttpExceptions: true }
     );
     var code = metaResp.getResponseCode();
