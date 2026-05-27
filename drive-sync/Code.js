@@ -205,7 +205,7 @@ function buildRow(item, fullPath, depth, isFolder, imgFolder, thumbCache) {
  *      source file hasn't been modified since the PNG was created, reuse it.
  *   2. Otherwise fetch the Drive API thumbnailLink (auth'd via the script's
  *      OAuth token), download the image, save it as {fileId}.png in imgFolder,
- *      make it public, and return the stable uc?export=view URL.
+ *      make it public, and return the stable lh3.googleusercontent.com/d/ URL.
  *
  * Returns '' if no thumbnail is available (e.g. the file type isn't
  * previewable by Google Drive).
@@ -219,7 +219,7 @@ function getOrGenerateThumbnail(file, imgFolder, thumbCache) {
     var cachedFile    = DriveApp.getFileById(thumbCache[fileId]);
     var cachedCreated = cachedFile.getDateCreated().getTime();
     if (cachedCreated >= modifiedMs) {
-      return 'https://drive.google.com/uc?export=view&id=' + thumbCache[fileId];
+      return 'https://lh3.googleusercontent.com/d/' + thumbCache[fileId];
     }
     // Source was modified after thumbnail was made — trash old one and regenerate
     cachedFile.setTrashed(true);
@@ -270,7 +270,7 @@ function getOrGenerateThumbnail(file, imgFolder, thumbCache) {
     thumbFile.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
 
     thumbCache[fileId] = thumbFile.getId();
-    return 'https://drive.google.com/uc?export=view&id=' + thumbFile.getId();
+    return 'https://lh3.googleusercontent.com/d/' + thumbFile.getId();
 
   } catch (e) {
     console.log('Thumbnail generation failed for ' + fileId + ': ' + e.message);
@@ -517,7 +517,7 @@ function debugThumbnail() {
     return;
   }
 
-  var url = 'https://drive.google.com/uc?export=view&id=' + thumbFile.getId();
+  var url = 'https://lh3.googleusercontent.com/d/' + thumbFile.getId();
   Logger.log('');
   Logger.log('SUCCESS  Paste this URL into a browser to verify:');
   Logger.log(url);

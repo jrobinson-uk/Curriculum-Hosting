@@ -170,6 +170,32 @@ overflow: auto;
 .stage-stage-2 { border-left: 5px solid #33FF57; } /* Green */
 .stage-stage-3 { border-left: 5px solid #3357FF; } /* Blue */
 
+// ---------------------------------------------------------------------------
+// Drive file table — Preview column
+// ---------------------------------------------------------------------------
+
+// Quartz adds an ↗ external-link icon (::after) to all outbound <a> tags.
+// Suppress it for thumbnail preview links so only the image shows.
+td a:has(> img)::after {
+  display: none !important;
+}
+
+// When a thumbnail fails to load the broken <img> still occupies space and
+// the parent <a> renders as an orphan link. Collapse both cleanly.
+td a img[alt^="Preview"] {
+  display: block;
+  min-width: 120px;
+  min-height: 68px;        // reserve space while loading
+  background: var(--lightgray);
+  border-radius: 4px;
+}
+td a img[alt^="Preview"]:not([src]),
+td a img[alt^="Preview"][src=""] {
+  min-height: 0;
+  min-width: 0;
+  visibility: hidden;
+}
+
 footer {
   p {
     display: flex;
