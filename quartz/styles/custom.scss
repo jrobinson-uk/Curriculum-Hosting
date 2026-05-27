@@ -175,8 +175,9 @@ overflow: auto;
 // ---------------------------------------------------------------------------
 
 // Quartz adds an ↗ external-link icon (::after) to all outbound <a> tags.
-// Suppress it for thumbnail preview links so only the image shows.
-td a:has(> img)::after {
+// Suppress it for all links inside table cells — the icon indicator adds no
+// value here and clutters icon/thumbnail columns.
+td a::after {
   display: none !important;
 }
 

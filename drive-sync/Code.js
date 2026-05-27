@@ -1,8 +1,11 @@
 // ID of the root Google Drive folder to crawl — replace with your own
 var ROOT_FOLDER_ID = '1MijRFIBWClcl_obwH8--lJCcGYxggCtF';
 
-var SHEET_NAME    = 'Drive Structure';
+var SHEET_NAME      = 'Drive Structure';
 var IMG_FOLDER_NAME = 'img'; // created next to the spreadsheet
+
+var GITHUB_REPO     = 'jrobinson-uk/Curriculum-Hosting';
+var GITHUB_WORKFLOW = 'sync-drive.yml';
 
 var HEADERS = [
   'File ID',
@@ -52,6 +55,8 @@ function onOpen() {
     .addItem('Crawl Drive Folder', 'crawlDrive')
     .addSeparator()
     .addItem('Regenerate All Thumbnails', 'regenerateThumbnails')
+    .addSeparator()
+    .addItem('Trigger GitHub Rebuild Only', 'triggerGitHubDeploy')
     .addToUi();
 }
 
@@ -84,9 +89,13 @@ function crawlDrive() {
 
   formatSheet(sheet);
 
-  SpreadsheetApp.getUi().alert(
-    'Crawl complete — ' + rows.length + ' items found.'
-  );
+  var triggered = triggerGitHubDeploy();
+  var msg = 'Crawl complete — ' + rows.length + ' items found.';
+  msg += triggered
+    ? '\n\nGitHub rebuild triggered. The site will update in ~3 minutes.'
+    : '\n\n⚠️ GitHub rebuild not triggered — no token stored.\nRun setGitHubToken("ghp_...") once to enable auto-deploy.';
+
+  SpreadsheetApp.getUi().alert(msg);
 }
 
 // Wipe the img folder and re-run the crawl so every thumbnail is regenerated.
@@ -366,6 +375,67 @@ function formatSheet(sheet) {
   headerRange.setFontColor('#ffffff');
   sheet.setFrozenRows(1);
   sheet.autoResizeColumns(1, HEADERS.length);
+}
+
+// ---------------------------------------------------------------------------
+// GitHub Actions — auto-trigger rebuild after crawl
+// ---------------------------------------------------------------------------
+
+/**
+ * One-time setup: paste your GitHub PAT (workflow scope) here and run this
+ * function once from the Apps Script editor. The token is stored securely in
+ * Script Properties and never appears in the sheet or logs again.
+ *
+ * How to create a token:
+ *   GitHub → Settings → Developer settings → Personal access tokens → Fine-grained
+ *   Permissions needed: Actions (Read & Write) on the Curriculum-Hosting repo.
+ */
+function setGitHubToken(token) {
+  PropertiesService.getScriptProperties().setProperty('GITHUB_TOKEN', token);
+  Logger.log('GitHub token saved. You can delete the token argument from this function now.');
+}
+
+/**
+ * Dispatches the sync-drive.yml GitHub Actions workflow.
+ * Called automatically at the end of crawlDrive(), or manually from the menu.
+ * Returns true on success, false if no token is stored or the call fails.
+ */
+function triggerGitHubDeploy() {
+  var token = PropertiesService.getScriptProperties().getProperty('GITHUB_TOKEN');
+  if (!token) {
+    Logger.log('No GITHUB_TOKEN stored. Run setGitHubToken("ghp_...") first.');
+    return false;
+  }
+
+  try {
+    var response = UrlFetchApp.fetch(
+      'https://api.github.com/repos/' + GITHUB_REPO +
+        '/actions/workflows/' + GITHUB_WORKFLOW + '/dispatches',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          'Accept': 'application/vnd.github+json',
+          'X-GitHub-Api-Version': '2022-11-28'
+        },
+        contentType: 'application/json',
+        payload: JSON.stringify({ ref: 'main' }),
+        muteHttpExceptions: true
+      }
+    );
+
+    var code = response.getResponseCode();
+    if (code === 204) {
+      Logger.log('GitHub workflow dispatched successfully.');
+      return true;
+    } else {
+      Logger.log('GitHub dispatch failed (' + code + '): ' + response.getContentText());
+      return false;
+    }
+  } catch (e) {
+    Logger.log('GitHub dispatch error: ' + e.message);
+    return false;
+  }
 }
 
 // ---------------------------------------------------------------------------
