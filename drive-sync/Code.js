@@ -1,6 +1,148 @@
 // ID of the root Google Drive folder to crawl — replace with your own
 var ROOT_FOLDER_ID = '1MijRFIBWClcl_obwH8--lJCcGYxggCtF';
 
+// ---------------------------------------------------------------------------
+// Debug — run this function directly from the Apps Script editor to diagnose
+// thumbnail generation issues. Results appear in View → Logs (or Ctrl+Enter).
+// ---------------------------------------------------------------------------
+
+function debugThumbnail() {
+  // Use the first real file under ROOT_FOLDER_ID as the test subject
+  var testFileId = null;
+  try {
+    var root  = DriveApp.getFolderById(ROOT_FOLDER_ID);
+    var files = root.getFiles(); // direct children only
+    // Walk into subfolders if root has no direct files
+    var found = false;
+    while (files.hasNext() && !found) { testFileId = files.next().getId(); found = true; }
+    if (!found) {
+      var subs = root.getFolders();
+      outer: while (subs.hasNext()) {
+        var sub = subs.next();
+        var sf  = sub.getFolders();
+        while (sf.hasNext()) {
+          var sub2 = sf.next();
+          var sf2  = sub2.getFolders();
+          while (sf2.hasNext()) {
+            var leaf  = sf2.next();
+            var lf    = leaf.getFiles();
+            if (lf.hasNext()) { testFileId = lf.next().getId(); found = true; break outer; }
+          }
+        }
+      }
+    }
+  } catch (e) {
+    Logger.log('FAIL  Could not access root folder: ' + e.message);
+    return;
+  }
+
+  if (!testFileId) {
+    Logger.log('FAIL  No files found under root folder to test with');
+    return;
+  }
+  Logger.log('OK    Test file ID: ' + testFileId);
+
+  // Step 1: OAuth token
+  var token;
+  try {
+    token = ScriptApp.getOAuthToken();
+    Logger.log('OK    OAuth token obtained (length ' + token.length + ')');
+  } catch (e) {
+    Logger.log('FAIL  Could not get OAuth token: ' + e.message);
+    return;
+  }
+
+  // Step 2: Drive API metadata call
+  var thumbnailLink;
+  try {
+    var metaUrl  = 'https://www.googleapis.com/drive/v3/files/' + testFileId + '?fields=id,name,thumbnailLink,mimeType';
+    var metaResp = UrlFetchApp.fetch(metaUrl, {
+      headers: { 'Authorization': 'Bearer ' + token },
+      muteHttpExceptions: true
+    });
+    var code = metaResp.getResponseCode();
+    var body = metaResp.getContentText();
+    Logger.log('OK    Drive API response code: ' + code);
+    if (code !== 200) {
+      Logger.log('FAIL  Drive API error body: ' + body);
+      return;
+    }
+    var meta  = JSON.parse(body);
+    Logger.log('OK    File name: ' + meta.name + '  mimeType: ' + meta.mimeType);
+    thumbnailLink = meta.thumbnailLink;
+    if (!thumbnailLink) {
+      Logger.log('WARN  thumbnailLink is empty — Drive has no preview for this file type');
+      Logger.log('      (Try a Google Doc, Sheet, or Slides file instead)');
+      return;
+    }
+    Logger.log('OK    thumbnailLink: ' + thumbnailLink.substring(0, 80) + '…');
+  } catch (e) {
+    Logger.log('FAIL  Drive API fetch error: ' + e.message);
+    return;
+  }
+
+  // Step 3: Fetch the thumbnail image
+  var imgBlob;
+  try {
+    var sizedLink = thumbnailLink.replace(/=s\d+([^&]*)$/, '=s800$1');
+    Logger.log('INFO  Fetching image from: ' + sizedLink.substring(0, 80) + '…');
+    var imgResp   = UrlFetchApp.fetch(sizedLink, {
+      headers: { 'Authorization': 'Bearer ' + token },
+      muteHttpExceptions: true
+    });
+    var imgCode   = imgResp.getResponseCode();
+    Logger.log('OK    Image fetch response code: ' + imgCode);
+    if (imgCode !== 200) {
+      Logger.log('FAIL  Image fetch error: ' + imgResp.getContentText().substring(0, 200));
+      return;
+    }
+    imgBlob = imgResp.getBlob();
+    Logger.log('OK    Image blob size: ' + imgBlob.getBytes().length + ' bytes  type: ' + imgBlob.getContentType());
+  } catch (e) {
+    Logger.log('FAIL  Image fetch exception: ' + e.message);
+    return;
+  }
+
+  // Step 4: Create img folder
+  var imgFolder;
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    imgFolder = getOrCreateImgFolder(ss);
+    Logger.log('OK    img folder: ' + imgFolder.getName() + ' (' + imgFolder.getId() + ')');
+  } catch (e) {
+    Logger.log('FAIL  Could not create img folder: ' + e.message);
+    return;
+  }
+
+  // Step 5: Save the blob as a file
+  var thumbFile;
+  try {
+    imgBlob.setName('debug-test-' + testFileId + '.png');
+    thumbFile = imgFolder.createFile(imgBlob);
+    Logger.log('OK    Thumbnail saved: ' + thumbFile.getName() + ' (' + thumbFile.getId() + ')');
+  } catch (e) {
+    Logger.log('FAIL  Could not save thumbnail: ' + e.message);
+    return;
+  }
+
+  // Step 6: Set sharing to public
+  try {
+    thumbFile.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+    Logger.log('OK    Sharing set to ANYONE_WITH_LINK');
+  } catch (e) {
+    Logger.log('FAIL  Could not set sharing: ' + e.message);
+    return;
+  }
+
+  // Final: show the public URL
+  var publicUrl = 'https://drive.google.com/uc?export=view&id=' + thumbFile.getId();
+  Logger.log('');
+  Logger.log('SUCCESS  Public thumbnail URL:');
+  Logger.log(publicUrl);
+  Logger.log('');
+  Logger.log('Paste that URL into a browser tab to verify it loads.');
+}
+
 var SHEET_NAME    = 'Drive Structure';
 var IMG_FOLDER_NAME = 'img'; // created next to the spreadsheet
 
