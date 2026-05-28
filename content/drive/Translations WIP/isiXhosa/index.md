@@ -1,4 +1,4 @@
 ---
-title: Grade 2
+title: isiXhosa
 date: 28/05/2026
 ---

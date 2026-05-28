@@ -1,0 +1,7 @@
+---
+title: Lesson 12
+date: 28/05/2026
+---
+| Preview | File | Drive | Office | PDF |
+|:-------:|------|:-----:|:------:|:---:|
+| <a href="https://docs.google.com/document/d/1Scbon3tVeSbUllSMQbH_JFyW53ouhwbf-ekD2X9JYSc/edit?usp=drivesdk" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/d/1dRMpWgicbrDLK2VbZKGgQ_jVxD40Co4e" width="120" alt="Preview of Lesson 12 - lesson plan" style="border-radius:4px;vertical-align:middle"></a> | **Lesson 12 - lesson plan** | <a href="https://docs.google.com/document/d/1Scbon3tVeSbUllSMQbH_JFyW53ouhwbf-ekD2X9JYSc/edit?usp=drivesdk" title="Open in Google Drive" target="_blank" rel="noopener"><img src="https://jrobinson-uk.github.io/Curriculum-Hosting/static/icons/drive.svg" width="40" height="40" alt="Open in Drive" style="vertical-align:middle"></a> | <a href="https://docs.google.com/document/d/1Scbon3tVeSbUllSMQbH_JFyW53ouhwbf-ekD2X9JYSc/export?format=docx" title="Download as Word (.docx)" target="_blank" rel="noopener"><img src="https://jrobinson-uk.github.io/Curriculum-Hosting/static/icons/office.svg" width="40" height="40" alt="Download Office" style="vertical-align:middle"></a> | <a href="https://docs.google.com/document/d/1Scbon3tVeSbUllSMQbH_JFyW53ouhwbf-ekD2X9JYSc/export?format=pdf" title="Download as PDF" target="_blank" rel="noopener"><img src="https://jrobinson-uk.github.io/Curriculum-Hosting/static/icons/pdf.svg" width="40" height="40" alt="Download PDF" style="vertical-align:middle"></a> |

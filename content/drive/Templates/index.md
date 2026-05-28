@@ -1,4 +1,4 @@
 ---
-title: Grade 2
+title: Templates
 date: 28/05/2026
 ---

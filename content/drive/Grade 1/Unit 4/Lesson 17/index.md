@@ -1,0 +1,7 @@
+---
+title: Lesson 17
+date: 28/05/2026
+---
+| Preview | File | Drive | Office | PDF |
+|:-------:|------|:-----:|:------:|:---:|
+| <a href="https://docs.google.com/document/d/1PO_-HFve2-zHDhbYEQy79yyJfKd6Op7IoHQdWT9-Xj4/edit?usp=drivesdk" target="_blank" rel="noopener"><img src="https://lh3.googleusercontent.com/d/1dECA6dotqkL8fLodx84ZYzIAasdaEnXI" width="120" alt="Preview of Grade 1 Lesson 17" style="border-radius:4px;vertical-align:middle"></a> | **Grade 1 Lesson 17** | <a href="https://docs.google.com/document/d/1PO_-HFve2-zHDhbYEQy79yyJfKd6Op7IoHQdWT9-Xj4/edit?usp=drivesdk" title="Open in Google Drive" target="_blank" rel="noopener"><img src="https://jrobinson-uk.github.io/Curriculum-Hosting/static/icons/drive.svg" width="40" height="40" alt="Open in Drive" style="vertical-align:middle"></a> | <a href="https://docs.google.com/document/d/1PO_-HFve2-zHDhbYEQy79yyJfKd6Op7IoHQdWT9-Xj4/export?format=docx" title="Download as Word (.docx)" target="_blank" rel="noopener"><img src="https://jrobinson-uk.github.io/Curriculum-Hosting/static/icons/office.svg" width="40" height="40" alt="Download Office" style="vertical-align:middle"></a> | <a href="https://docs.google.com/document/d/1PO_-HFve2-zHDhbYEQy79yyJfKd6Op7IoHQdWT9-Xj4/export?format=pdf" title="Download as PDF" target="_blank" rel="noopener"><img src="https://jrobinson-uk.github.io/Curriculum-Hosting/static/icons/pdf.svg" width="40" height="40" alt="Download PDF" style="vertical-align:middle"></a> |
